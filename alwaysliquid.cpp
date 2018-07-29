@@ -1,7 +1,5 @@
 #include "alwaysliquid.hpp"
 
-namespace enumivo {
-
 void token::create( account_name issuer,
                     asset        maximum_supply )
 {
@@ -139,6 +137,4 @@ void token::close( account_name owner, symbol_type symbol ) {
    acnts.erase( it );
 }
 
-} /// namespace enumivo
-
-ENUMIVO_ABI( enumivo::token, (create)(issue)(transfer)(close)(retire) )
+ENUMIVO_ABI( token, (create)(issue)(transfer)(close)(retire) )
