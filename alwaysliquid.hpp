@@ -13,9 +13,9 @@ namespace enumivo {
 
    using std::string;
 
-   class token : public contract {
+   class alwaysliquid : public contract {
       public:
-         token( account_name self ):contract(self){}
+         alwaysliquid( account_name self ):contract(self){}
 
          void create( account_name issuer,
                       asset        maximum_supply);
@@ -65,14 +65,14 @@ namespace enumivo {
          };
    };
 
-   asset token::get_supply( symbol_name sym )const
+   asset alwaysliquid::get_supply( symbol_name sym )const
    {
       stats statstable( _self, sym );
       const auto& st = statstable.get( sym );
       return st.supply;
    }
 
-   asset token::get_balance( account_name owner, symbol_name sym )const
+   asset alwaysliquid::get_balance( account_name owner, symbol_name sym )const
    {
       accounts accountstable( _self, owner );
       const auto& ac = accountstable.get( sym );

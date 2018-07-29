@@ -2,7 +2,7 @@
 
 namespace enumivo {
 
-void token::create( account_name issuer,
+void alwaysliquid::create( account_name issuer,
                     asset        maximum_supply )
 {
     require_auth( _self );
@@ -24,7 +24,7 @@ void token::create( account_name issuer,
 }
 
 
-void token::issue( account_name to, asset quantity, string memo )
+void alwaysliquid::issue( account_name to, asset quantity, string memo )
 {
     auto sym = quantity.symbol;
     enumivo_assert( sym.is_valid(), "invalid symbol name" );
@@ -54,7 +54,7 @@ void token::issue( account_name to, asset quantity, string memo )
     }
 }
 
-void token::retire( asset quantity, string memo )
+void alwaysliquid::retire( asset quantity, string memo )
 {
     auto sym = quantity.symbol;
     enumivo_assert( sym.is_valid(), "invalid symbol name" );
@@ -79,7 +79,7 @@ void token::retire( asset quantity, string memo )
     sub_balance( st.issuer, quantity );
 }
 
-void token::transfer( account_name from,
+void alwaysliquid::transfer( account_name from,
                       account_name to,
                       asset        quantity,
                       string       memo )
@@ -105,7 +105,7 @@ void token::transfer( account_name from,
     add_balance( to, quantity, payer );
 }
 
-void token::sub_balance( account_name owner, asset value ) {
+void alwaysliquid::sub_balance( account_name owner, asset value ) {
    accounts from_acnts( _self, owner );
 
    const auto& from = from_acnts.get( value.symbol.name(), "no balance object found" );
@@ -116,7 +116,7 @@ void token::sub_balance( account_name owner, asset value ) {
       });
 }
 
-void token::add_balance( account_name owner, asset value, account_name ram_payer )
+void alwaysliquid::add_balance( account_name owner, asset value, account_name ram_payer )
 {
    accounts to_acnts( _self, owner );
    auto to = to_acnts.find( value.symbol.name() );
@@ -131,7 +131,7 @@ void token::add_balance( account_name owner, asset value, account_name ram_payer
    }
 }
 
-void token::close( account_name owner, symbol_type symbol ) {
+void alwaysliquid::close( account_name owner, symbol_type symbol ) {
    accounts acnts( _self, owner );
    auto it = acnts.find( symbol.name() );
    enumivo_assert( it != acnts.end(), "Balance row already deleted or never existed. Action won't have any effect." );
@@ -141,4 +141,4 @@ void token::close( account_name owner, symbol_type symbol ) {
 
 } /// namespace enumivo
 
-ENUMIVO_ABI( enumivo::token, (create)(issue)(transfer)(close)(retire) )
+ENUMIVO_ABI( alwaysliquid, (create)(issue)(transfer)(close)(retire) )
