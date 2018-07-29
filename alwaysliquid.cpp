@@ -141,4 +141,4 @@ void alwaysliquid::close( account_name owner, symbol_type symbol ) {
 
 } /// namespace enumivo
 
-ENUMIVO_ABI( alwaysliquid, (create)(issue)(transfer)(close)(retire) )
+ENUMIVO_ABI( enumivo::alwaysliquid, (create)(issue)(transfer)(close)(retire) )
